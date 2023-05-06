@@ -12,7 +12,9 @@ from xgboost import XGBClassifier
 logging.basicConfig(level=logging.INFO)
 
 
-def split_data(data: pd.DataFrame, test_size=0.25):
+def split_data(data_file: str, test_size=0.25):
+
+    data=pd.read_csv(data_file)
 
     # split into features and target
     feature_cols = list(data.columns)
@@ -29,8 +31,6 @@ def split_data(data: pd.DataFrame, test_size=0.25):
 
 def train_classifiers(data_file: str, test_size: float = 0.25, save_models: bool = False):
 
-    data=pd.read_csv(data_file)
-
     classifiers = [
         ['decision_tree', DecisionTreeClassifier(splitter='best', random_state=8)],
         ['random_forest', RandomForestClassifier(n_estimators=500, n_jobs=-1, random_state=8)],
@@ -39,7 +39,7 @@ def train_classifiers(data_file: str, test_size: float = 0.25, save_models: bool
     ]
 
     # split data
-    X_train, X_test, y_train, y_test = split_data(data, test_size)
+    X_train, X_test, y_train, y_test = split_data(data_file, test_size)
 
     for classifier in classifiers:
         logging.info('=' * 80)

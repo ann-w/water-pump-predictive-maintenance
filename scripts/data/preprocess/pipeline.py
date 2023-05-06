@@ -52,4 +52,4 @@ def pipeline(file_path: str, export_csv: bool = True) -> pd.DataFrame:
     return data
 
 # Example
-# pipeline("../../../data/external/water_pump_original.csv")
+# pipeline("../../../data/external/water_pump_original.csv", True)
