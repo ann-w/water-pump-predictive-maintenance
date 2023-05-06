@@ -1,4 +1,4 @@
 .ipynb_checkpoints
 .idea
 __pycache__/
-models/
+models/random_forest_base_v1.sav
